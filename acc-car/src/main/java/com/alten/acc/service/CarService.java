@@ -3,6 +3,8 @@ package com.alten.acc.service;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,34 @@ public class CarService {
 	@Autowired
 	private CarRepository carRepository;
 
-	// add new car
-	public Car addCar(String carId, String registrationNumber, String status) {
-		return carRepository.save(new Car(carId, registrationNumber, status));
+	Logger logger = LoggerFactory.getLogger(CarService.class);
+
+	public Car addCar(Car car) {
+		if (StringUtils.isEmpty(car.getCarId()) && StringUtils.isEmpty(car.getRegistrationNumber())) {
+			throw new IllegalArgumentException("Car Parrameters are not provided");
+		}
+		if (StringUtils.isEmpty(car.getStatus())) {
+			car.setStatus("DISCONNECTED");
+		}
+		logger.info("New Car {Car Id}:" + car.getCarId() + ", {Registration Number}: " + car.getRegistrationNumber());
+		return carRepository.save(car);
+	}
+
+	public String deleteCar(String id) {
+		Car car = carRepository.findById(id).orElse(null);
+		if (car == null) {
+			throw new IllegalArgumentException("No car found for the provided Id");
+		}
+		logger.info("Delete Car {Id}:" + id);
+		carRepository.delete(car);
+		return "Deleted:" + id;
 	}
 
 	// get all cars
 	public List<Car> findAll() {
-		return carRepository.findAll();
+		List<Car> cars = carRepository.findAll();
+		logger.info("Get All Cars {Total}:" + (cars != null ? cars.size() : "0"));
+		return cars;
 	}
 
 	// find car by id
@@ -30,7 +52,6 @@ public class CarService {
 		if (StringUtils.isEmpty(id)) {
 			throw new IllegalArgumentException("Id is not provided");
 		}
-
 		return carRepository.findById(id).orElse(null);
 	}
 
@@ -42,23 +63,19 @@ public class CarService {
 		return carRepository.findByCarId(carId);
 	}
 
-	// find car by registration number
-	public Car findByRegistrationNumber(String registrationNumber) {
-		if (StringUtils.isEmpty(registrationNumber)) {
-			throw new IllegalArgumentException("Registration Number is not provided");
-		}
-		return carRepository.findByRegistrationNumber(registrationNumber);
-	}
-
 	// set car status {CONNECTED/DISCONNECTED}
-	public Car pulseCar(String carId, String status) {
-		if (StringUtils.isEmpty(carId)) {
-			throw new IllegalArgumentException("Car Id is not provided");
+	public Car pulseCar(String id, String status) {
+		if (StringUtils.isEmpty(id)) {
+			throw new IllegalArgumentException("Id is not provided");
 		}
 		if (StringUtils.isEmpty(status)) {
-			status = "DISCONNECTED";
+			throw new IllegalArgumentException("Status is not provided");
 		}
-		Car car = carRepository.findByCarId(carId);
+
+		Car car = carRepository.findById(id).orElse(null);
+		if (car == null) {
+			throw new IllegalArgumentException("No car found for the provided Id");
+		}
 		car.setStatus(status);
 		carRepository.save(car);
 		return car;

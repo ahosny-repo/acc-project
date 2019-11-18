@@ -27,7 +27,13 @@ public class CustomerController {
 	}
 
 	@HystrixCommand
-	@GetMapping("/customers/{name}")
+	@GetMapping("/customers/id/{id}")
+	public Customer getCustomerById(@PathVariable String id) {
+		return customerService.findById(id);
+	}
+	
+	@HystrixCommand
+	@GetMapping("/customers/name/{name}")
 	public Customer getCustomerByName(@PathVariable String name) {
 		return customerService.findByName(name);
 	}
