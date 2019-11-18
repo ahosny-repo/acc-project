@@ -13,7 +13,7 @@ addons:
   sonarcloud:
     organization: "ahosny-repo"
     token:
-      secure: "aab8973204f9cf9d6b1345ed63f7a523f9fdd74a"
+      secure: aab8973204f9cf9d6b1345ed63f7a523f9fdd74a
 
 script:
     - cd acc-discovery
