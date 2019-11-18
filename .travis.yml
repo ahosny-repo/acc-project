@@ -18,21 +18,28 @@ addons:
 script:
     - cd acc-discovery
     - mvn clean install
+    - sonar-scanner
     
     - cd ../acc-config
     - mvn clean install
+    - sonar-scanner
     
     - cd ../acc-car
     - mvn clean install
+    - sonar-scanner
 
     - cd ../acc-customer
     - mvn clean install
+    - sonar-scanner
     
     - cd ../acc-gateway
     - mvn clean install
+    - sonar-scanner
     
     - cd ../acc-car-client
     - mvn clean install
+    - sonar-scanner
     
     - cd ../acc-hystrix-monitor
     - mvn clean install
+    - sonar-scanner
