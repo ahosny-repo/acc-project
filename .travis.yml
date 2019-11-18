@@ -13,33 +13,33 @@ addons:
   sonarcloud:
     organization: "ahosny-repo"
     token:
-      secure: aab8973204f9cf9d6b1345ed63f7a523f9fdd74a
+      secure: d73f7f526535fdf25116e55e46a5cf4bf4cad7c7
 
 script:
     - cd acc-discovery
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
     
     - cd ../acc-config
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
     
     - cd ../acc-car
-    - mvn clean install
-    - sonar-scanner
-
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
+    
     - cd ../acc-customer
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
     
     - cd ../acc-gateway
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
     
     - cd ../acc-car-client
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
     
     - cd ../acc-hystrix-monitor
-    - mvn clean install
-    - sonar-scanner
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=ahosny-repo_acc-project
+    - mvn install
