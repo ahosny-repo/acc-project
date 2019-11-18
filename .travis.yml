@@ -11,3 +11,5 @@ script:
     - cd ../acc-discovery
     - mvn clean install
 
+    - cd ../acc-gateway
+    - mvn clean install
