@@ -7,3 +7,7 @@ dist: trusty
 script:
     - cd acc-config
     - mvn clean install
+    
+    - cd ../acc-discovery
+    - mvn clean install
+
