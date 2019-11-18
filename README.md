@@ -1,10 +1,7 @@
-[![Comments (%)](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=comment_lines_density)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=comment_lines_density)
-[![Open issues](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=open_issues)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=open_issues)
-[![Code smells](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=code_smells)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=code_smells)
-[![Technical debt](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=sqale_index)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=sqale_index)
-[![Bugs](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=bugs)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=bugs)
-[![Reliability remediation effort](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=reliability_remediation_effort)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=reliability_remediation_effort)
-[![Coverage](https://sonarcloud.io/api/badges/measure?key=ahosny-repo&metric=coverage)](https://sonarcloud.io/component_measures?id=ahosny-repo&metric=coverage)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ahosny-repo_acc-project&metric=alert_status)](https://sonarcloud.io/dashboard?id=ahosny-repo_acc-project)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ahosny-repo_acc-project&metric=coverage)](https://sonarcloud.io/dashboard?id=ahosny-repo_acc-project)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ahosny-repo_acc-project&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ahosny-repo_acc-project)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ahosny-repo_acc-project&metric=security_rating)](https://sonarcloud.io/dashboard?id=ahosny-repo_acc-project)
 
 # acc-project
 
