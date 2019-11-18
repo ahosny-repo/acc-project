@@ -10,18 +10,3 @@ script:
     
     - cd ../acc-config
     - mvn clean install
-      
-    - cd ../acc-car
-    - mvn clean install
-
-    - cd ../acc-customer
-    - mvn clean install
-    
-    - cd ../acc-gateway
-    - mvn clean install
-    
-    - cd ../acc-car-client
-    - mvn clean install
-    
-    - cd ../acc-hystrix-monitor
-    - mvn clean install
