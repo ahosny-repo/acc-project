@@ -5,11 +5,17 @@ install: true
 dist: trusty
 
 script:
-    - cd acc-config
+    - cd acc-discovery
     - mvn clean install
     
-    - cd ../acc-discovery
+    - cd ../acc-config
+    - mvn clean install
+    
+    - cd ../acc-gateway
+    - mvn clean install
+    
+    - cd ../acc-car
     - mvn clean install
 
-    - cd ../acc-gateway
+    - cd ../acc-customer
     - mvn clean install
