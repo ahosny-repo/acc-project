@@ -2,10 +2,30 @@ sudo: required
 language: java
 jdk: oraclejdk8
 dist: trusty
+install: true
+
+cache:
+  directories:
+    - $HOME/.m2
 
 script:
     - cd acc-discovery
     - mvn clean install
     
     - cd ../acc-config
+    - mvn clean install
+    
+    - cd ../acc-car
+    - mvn clean install
+
+    - cd ../acc-customer
+    - mvn clean install
+    
+    - cd ../acc-gateway
+    - mvn clean install
+    
+    - cd ../acc-car-client
+    - mvn clean install
+    
+    - cd ../acc-hystrix-monitor
     - mvn clean install
