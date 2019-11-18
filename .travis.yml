@@ -4,27 +4,26 @@ jdk: oraclejdk8
 install: true
 
 script:
+        - cd ../acc-config
+        - mvn clean install
 
-- cd ../acc-config
-- mvn clean install
+        - cd ../acc-discovery
+        - mvn clean install
 
-- cd ../acc-discovery
-- mvn clean install
+        - cd ../acc-car
+        - mvn clean install
 
-- cd ../acc-car
-- mvn clean install
+        - cd ../acc-customer
+        - mvn clean install
 
-- cd ../acc-customer
-- mvn clean install
+        - cd ../acc-car-client
+        - mvn clean install
 
-- cd ../acc-car-client
-- mvn clean install
+        - cd ../acc-gateway
+        - mvn clean install
 
-- cd ../acc-gateway
-- mvn clean install
+        - cd ../acc-hystrix-monitor
+        - mvn clean install
 
-- cd ../acc-hystrix-monitor
-- mvn clean install
-
-- cd ../acc-turbine-stream
-- mvn clean install
+        - cd ../acc-turbine-stream
+        - mvn clean install
