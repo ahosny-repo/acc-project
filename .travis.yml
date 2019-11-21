@@ -18,36 +18,27 @@ addons:
 script:
     - cd acc-discovery
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
-    
+     
     - cd ../acc-config
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-customer
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-gateway
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-car-client
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-customer-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
     
     - cd ../acc-hystrix-monitor
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
         
     - cd ../acc-turbine-stream
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - mvn install
