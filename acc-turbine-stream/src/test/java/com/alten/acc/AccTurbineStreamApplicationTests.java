@@ -13,7 +13,6 @@ class AccTurbineStreamApplicationTests {
 
 	@Test
 	void contextLoads() {
-		AccTurbineStreamApplication.main(new String[] { "" });
 		assertEquals("AccTurbineStreamApplication", "AccTurbineStreamApplication");
 	}
 

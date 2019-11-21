@@ -30,25 +30,30 @@ public class CustomerCarService {
 		List<Customer> customers = customerClient.getAllCustomers();
 		List<CustomerCar> customerCarList = new ArrayList<CustomerCar>();
 		for (int i = 0; i < customers.size(); i++) {
-			CustomerCar customerCar = new CustomerCar();
-			customerCar.setCustomerName(customers.get(i).getName());
-			customerCar.setCustomerAddress(customers.get(i).getAddress());
-			customerCar.setCarId("");
-			customerCar.setCarRegNumber("");
-			customerCar.setCarStatus("");
 			List<String> carIds = customers.get(i).getCarIds();
 			if (carIds != null && !carIds.isEmpty()) {
 				for (int j = 0; j < carIds.size(); j++) {
-					Car car = carClient.getCarByCarId(carIds.get(j));
+					String id = carIds.get(j);
+					Car car = carClient.getCarById(id);
 					if (car != null) {
+						CustomerCar customerCar = new CustomerCar();
+						customerCar.setCustomerName(customers.get(i).getName());
+						customerCar.setCustomerAddress(customers.get(i).getAddress());
 						customerCar.setCarId(car.getCarId());
 						customerCar.setCarRegNumber(car.getRegistrationNumber());
 						customerCar.setCarStatus(car.getStatus());
 						customerCarList.add(customerCar);
 					}
 				}
+			} else {
+				CustomerCar customerCar = new CustomerCar();
+				customerCar.setCustomerName(customers.get(i).getName());
+				customerCar.setCustomerAddress(customers.get(i).getAddress());
+				customerCar.setCarId("");
+				customerCar.setCarRegNumber("");
+				customerCar.setCarStatus("");
+				customerCarList.add(customerCar);
 			}
-			customerCarList.add(customerCar);
 		}
 		logger.info("Get All Customer Cars {Total}:" + (customerCarList != null ? customerCarList.size() : "0"));
 		return customerCarList;

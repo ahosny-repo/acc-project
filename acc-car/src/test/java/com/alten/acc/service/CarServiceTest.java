@@ -31,8 +31,8 @@ public class CarServiceTest {
 
 	@Test
 	public void testDeleteCar() {
-		Car car = carService.findByCarId("1235");
-		String message = carService.deleteCar(car.getId());
+		List<Car> carList = carService.findByCarId("1235");
+		String message = carService.deleteCar(carList.get(0).getId());
 		assertEquals(message, message);
 	}
 
@@ -54,8 +54,8 @@ public class CarServiceTest {
 
 	@Test
 	public void testFindCarById() {
-		Car car = carService.findById("5dc9db0e84486077a9e9f863");
-		assertEquals(car.getCarId(), "A12321");
+		Car car = carService.findById("5dd6ee304cc7683f1c895d31");
+		assertEquals(car.getCarId(), "YS2R4X20005399401");
 	}
 
 	@Test
@@ -72,14 +72,14 @@ public class CarServiceTest {
 
 	@Test
 	public void testFindCarByCarId() {
-		Car car = carService.findByCarId("A12321");
-		assertEquals(car.getId(), "5dc9db0e84486077a9e9f863");
+		List<Car> carList = carService.findByCarId("YS2R4X20005399401");
+		assertEquals(carList.get(0).getId(), "5dd6ee304cc7683f1c895d31");
 	}
 
 	@Test
 	public void testFindCarByCarIdWithNotFoundCar() {
-		Car car = carService.findByCarId("YUJWJJWJWJW");
-		assertNull(car);
+		List<Car> carList = carService.findByCarId("YUJWJJWJWJW");
+		assertEquals(carList.isEmpty(), true);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -89,12 +89,14 @@ public class CarServiceTest {
 
 	@Test
 	public void testPulseCar() {
-		carService.pulseCar("5dc9db0e84486077a9e9f863", "DISCONNECTED");
+		carService.pulseCar("5dd6ee304cc7683f1c895d31", "DISCONNECTED");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testPulseCarWithNotFoundCar() {
 		carService.pulseCar("23343344OPPP", "CONNECTED");
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testPulseCarWithEmptyParam() {
 		carService.pulseCar("", "");

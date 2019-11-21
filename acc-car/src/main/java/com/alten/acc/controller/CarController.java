@@ -47,7 +47,7 @@ public class CarController {
 
 	@HystrixCommand
 	@GetMapping("/cars/carid/{carId}")
-	public Car getCarByCarId(@PathVariable String carId) {
+	public List<Car> getCarByCarId(@PathVariable String carId) {
 		return carService.findByCarId(carId);
 	}
 

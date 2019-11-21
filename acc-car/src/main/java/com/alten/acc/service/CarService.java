@@ -56,7 +56,7 @@ public class CarService {
 	}
 
 	// find car by car id
-	public Car findByCarId(String carId) {
+	public List<Car> findByCarId(String carId) {
 		if (StringUtils.isEmpty(carId)) {
 			throw new IllegalArgumentException("Car Id is not provided");
 		}

@@ -49,9 +49,10 @@ public class CarControllerTest {
 
 	@Test
 	public void getCarByCarIdTest() throws Exception {
-
+		List<Car> carList = new ArrayList<Car>();
 		Car car = new Car("1234", "A1234", "CONNECTED");
-		Mockito.when(carService.findByCarId("1234")).thenReturn(car);
+		carList.add(car);
+		Mockito.when(carService.findByCarId("1234")).thenReturn(carList);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/acc/cars/carid/1234")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -63,9 +64,9 @@ public class CarControllerTest {
 	@Test
 	public void getCarByIdTest() throws Exception {
 		Car car = new Car();
-		car.setId("5dc9db0e84486077a9e9f863");
-		Mockito.when(carService.findById("5dc9db0e84486077a9e9f863")).thenReturn(car);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/acc/cars/id/5dc9db0e84486077a9e9f863")
+		car.setId("5dd6ee304cc7683f1c895d31");
+		Mockito.when(carService.findById("5dd6ee304cc7683f1c895d31")).thenReturn(car);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/acc/cars/id/5dd6ee304cc7683f1c895d31")
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		MockHttpServletResponse response = result.getResponse();
