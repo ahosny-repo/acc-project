@@ -3,6 +3,7 @@ package com.alten.acc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("acc")
+@CrossOrigin(origins = "*")
 public class CustomerController {
 
 	@Autowired
@@ -23,7 +25,8 @@ public class CustomerController {
 	@HystrixCommand
 	@GetMapping("/customers")
 	public List<Customer> getAllCustomers() {
-		return customerService.findAll();
+		List<Customer> customers = customerService.findAll();
+		return customers;
 	}
 
 	@HystrixCommand
@@ -31,7 +34,7 @@ public class CustomerController {
 	public Customer getCustomerById(@PathVariable String id) {
 		return customerService.findById(id);
 	}
-	
+
 	@HystrixCommand
 	@GetMapping("/customers/name/{name}")
 	public Customer getCustomerByName(@PathVariable String name) {

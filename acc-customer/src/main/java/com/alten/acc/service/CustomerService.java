@@ -17,7 +17,7 @@ public class CustomerService {
 	private CustomerRepository customerRepository;
 
 	Logger logger = LoggerFactory.getLogger(CustomerService.class);
-	
+
 	public Customer addCustomer(Customer customer) {
 		if (customer == null) {
 			throw new IllegalArgumentException("Customer is not provided");
@@ -29,7 +29,7 @@ public class CustomerService {
 			throw new IllegalArgumentException("Customer address is not provided");
 		}
 		logger.info("New Customer {Name}:" + customer.getName() + ", {Address}: " + customer.getAddress());
-		
+
 		return customerRepository.save(customer);
 	}
 
@@ -46,7 +46,7 @@ public class CustomerService {
 
 	// get all customers
 	public List<Customer> findAll() {
-		List<Customer> customers= customerRepository.findAll();
+		List<Customer> customers = customerRepository.findAll();
 		logger.info("Get All Customer {Total}:" + (customers != null ? customers.size() : "0"));
 		return customers;
 	}
