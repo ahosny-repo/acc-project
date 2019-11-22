@@ -14,31 +14,57 @@ addons:
     organization: "ahosny-repo"
     token:
       secure: d73f7f526535fdf25116e55e46a5cf4bf4cad7c7
+      
+services:
+
+    - docker
+    
+before_install:
+
+     - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 script:
     - cd acc-discovery
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-     
+    - docker build -t $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID
+    
     - cd ../acc-config
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID
     
     - cd ../acc-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-customer
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-customer:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-customer:$TRAVIS_BUILD_ID
     
     - cd ../acc-gateway
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-gateway:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-gateway:$TRAVIS_BUILD_ID
     
     - cd ../acc-car-client
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-car-client:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-car-client:$TRAVIS_BUILD_ID
     
     - cd ../acc-customer-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-customer-car:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-customer-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-hystrix-monitor
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-hystrix-monitor:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-hystrix-monitor:$TRAVIS_BUILD_ID
         
     - cd ../acc-turbine-stream
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID
