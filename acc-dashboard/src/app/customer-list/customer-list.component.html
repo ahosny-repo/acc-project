@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h2>Customer Cars</h2>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Car Id</th>
+					<th>Registration Number</th>
+					<th>Car Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor='let customer of customers'>
+					<td>{{customer.customerName}}</td>
+					<td>{{customer.customerAddress}}</td>
+					<td>{{customer.carId}}</td>
+					<td>{{customer.carRegNumber}}</td>
+					<td>{{customer.carStatus}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
