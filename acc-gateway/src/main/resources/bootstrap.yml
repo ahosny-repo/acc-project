@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: acc-gateway
+  cloud:
+    config:
+      username: admin
+      password: admin@123
+      uri: http://localhost:8888
+zuul:
+  host:
+    socket-timeout-millis: 30000
+  routes:
+    cars:
+      path: /acc/cars/**
+      url: http://localhost:8066/acc/cars
+    customercars:
+      path: /acc/customercars/**
+      url: http://localhost:8078/acc/customercars
+    customers:
+      path: /acc/customers/**
+      url: http://localhost:8076/acc/customers

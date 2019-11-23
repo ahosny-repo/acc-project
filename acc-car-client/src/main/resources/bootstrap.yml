@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: acc-car-client
+  cloud:
+    config:
+      username: admin
+      password: admin@123
+      uri: http://localhost:8888

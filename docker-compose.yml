@@ -1,0 +1,134 @@
+version: '3'
+services:      
+  acc-discovery-service:
+    build: ./acc-discovery
+    image: acc-discovery
+    ports:
+      - '8761:8761'
+    networks:
+      - acc-project-network
+  
+  acc-config-service:
+    build: ./acc-config
+    image: acc-config
+    ports:
+      - '8888:8888'
+    depends_on:
+      - acc-discovery-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+    networks:
+      - acc-project-network
+    
+ acc-car-service:
+    build: ./acc-car
+    image: acc-car
+    ports:
+      - '8066:8066'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+    networks:
+      - acc-project-network
+	  
+ acc-customer-service:
+    build: ./acc-customer
+    image: acc-customer
+    ports:
+      - '8076:8076'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+    networks:
+      - acc-project-network
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+      
+  acc-car-client-service:
+    build: ./acc-car-client
+    image: acc-car-client
+    ports:
+      - '8068:8068'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+      - acc-car-service
+    networks:
+      - acc-project-network   
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+  
+  acc-customer-car-service:
+    build: ./acc-customer-car
+    image: acc-customer-car
+    ports:
+      - '8078:8078'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+      - acc-car-service
+      - acc-customer-service
+    networks:
+      - acc-project-network         
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+  
+  acc-gateway-service:
+    build: ./acc-gateway
+    image: acc-gateway
+    ports:
+      - '8088:8088'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+      - acc-car-service
+      - acc-customer-service
+      - acc-customer-car-service
+    networks:
+      - acc-project-network
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+    
+  acc-hystrix-monitor-service:
+    build: ./acc-hystrix-monitor
+    image: acc-hystrix-monitor
+    ports:
+      - '8886:8886'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+    networks:
+      - acc-project-network
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+    
+  acc-turbine-stream-service:
+    build: ./acc-turbine-stream
+    image: acc-turbine-stream
+    ports:
+      - '9090:9090'
+    depends_on:
+      - acc-config-service
+      - acc-discovery-service
+      - acc-car-service
+      - acc-customer-service
+      - acc-customer-car-service
+    networks:
+      - acc-project-network
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+          
+  acc-dashboard-service:
+    build: ./acc-dashboard
+    image: acc-dashboard
+    ports: 
+        - '4200:4200'
+    command: > 
+        bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+    networks:
+      - acc-project-network
+      
+networks:
+  acc-project-network:

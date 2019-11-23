@@ -1,0 +1,18 @@
+server:
+  port: 8076
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+spring:
+  data:
+    mongodb:
+      database: acc
+      host: ec2-54-93-212-62.eu-central-1.compute.amazonaws.com

@@ -1,0 +1,16 @@
+server:
+  port: 9090
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+turbine:
+  app-config: acc-car,acc-customer,acc-customer-car
+  cluster-name-expression: new String("default")

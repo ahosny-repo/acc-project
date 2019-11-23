@@ -1,0 +1,8 @@
+application: ''
+cloud: ''
+config: ''
+name: acc-hystrix-monitor
+password: admin@123
+spring: ''
+uri: http://localhost:8888
+username: admin

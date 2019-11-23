@@ -68,3 +68,7 @@ script:
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID
+    
+    - cd ../acc-dashboard
+    - docker build -t $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID
