@@ -7,7 +7,7 @@ services:
       - '8761:8761'
     networks:
       - acc-project-network
-  
+
   acc-config-service:
     build: ./acc-config
     image: acc-config
@@ -19,8 +19,8 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
     networks:
       - acc-project-network
-    
- acc-car-service:
+
+  acc-car-service:
     build: ./acc-car
     image: acc-car
     ports:
@@ -32,8 +32,8 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
     networks:
       - acc-project-network
-	  
- acc-customer-service:
+  
+  acc-customer-service:
     build: ./acc-customer
     image: acc-customer
     ports:
