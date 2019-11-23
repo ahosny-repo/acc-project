@@ -1,0 +1,22 @@
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+  - '8'
+
+cache:
+  directories:
+    - ./node_modules
+
+addons:
+  chrome: stable
+  
+install:
+  - npm install
+
+script:
+  - npm run lint
+  - npm run test:headless
+  - npm run build
+  - xvfb-run npm run e2e
+  - npm run build:ci
