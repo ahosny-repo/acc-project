@@ -16,10 +16,13 @@ zuul:
   routes:
     cars:
       path: /acc/cars/**
-      url: http://localhost:8066/acc/cars
+      serviceId: acc-car
+      url: http://${CAR_SVC_HOSTNAME:localhost}:8066/acc/cars
     customercars:
       path: /acc/customercars/**
-      url: http://localhost:8078/acc/customercars
+      serviceId: acc-customer-car
+      url: http://${CUST_CAR_SVC_HOSTNAME:localhost}:8078/acc/customercars     
     customers:
       path: /acc/customers/**
-      url: http://localhost:8055/acc/customers
+      serviceId: acc-customer
+      url: http://${CUSTOMER_SVC_HOSTNAME:localhost}:8055/acc/customers

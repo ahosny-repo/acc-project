@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.alten.acc.model.Customer;
 
-@FeignClient(name = "acc-customer", url = "http://localhost:8055")
+@FeignClient("acc-customer")
 public interface CustomerClient {
 
 	@GetMapping("/acc/customers")

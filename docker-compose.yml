@@ -108,6 +108,9 @@ services:
     networks:
       - acc-project-network
     environment:
+      CAR_SVC_HOSTNAME: "acc-car-svc"
+      CUST_CAR_SVC_HOSTNAME: "acc-customer-car-svc"
+      CUSTOMER_SVC_HOSTNAME: "acc-customer-svc"
       EUREKA_HOSTNAME: "acc-discovery-svc"
       EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
       

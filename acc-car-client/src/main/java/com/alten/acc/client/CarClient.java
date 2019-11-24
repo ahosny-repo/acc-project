@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.alten.acc.model.Car; 
 
-@FeignClient(name = "acc-car", url = "http://localhost:8066")
+@FeignClient("acc-car")
 public interface CarClient {
 
 	@GetMapping("/acc/cars")
