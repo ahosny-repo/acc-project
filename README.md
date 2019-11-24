@@ -5,7 +5,7 @@
 
 
 # Car Monitoring System (ACC)
-Car Monitoring System (Alten Connected Car - ACC for short) is a system for tracking and monitoring car status of the customers whos are registered within the system so the can manage their day to day business operations. 
+Car Monitoring System (A Connected Car - ACC for short) is a system for tracking and monitoring car status of the customers whos are registered within the system so the can manage their day to day business operations. 
 
 <p align="center">
 <img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-dashboard.JPG" width="600">
@@ -39,7 +39,7 @@ Car Monitoring System (Alten Connected Car - ACC for short) is a system for trac
 	
 ## Solution Overview
 
-The following diagrams represent the solution components, domains, infrastructure and services that used as building block for our project using Spring Boot, Spring Cloud with Netflix OSS Components and Angular8 for fronted Web-GUI / dashboard.
+The following diagrams represent the solution components, domains, infrastructure and services that used as building block for our project using Spring Boot, Spring Cloud with Netflix OSS Components and AWS for database hosting service pluse Angular8 for fronted Web-GUI / dashboard.
 
 <p align="center">
 <img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-arch.JPG" width="600">
@@ -79,6 +79,12 @@ Spring Cloud Config provides server-side and client-side support for externalize
 
 Netflix Eureka allows micro services to register themselves at runtime as they appear in the system landscape.
 
+Below screenshot shows the ACC Project services registered and running on Eureka Server:
+
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/eureka-server.JPG" width="600">
+</p>
+
 ### Microservice API Gateway
 
 Zulu provides a well-known entry point to the micro services in the system landscape. Using dynamically allocated ports is convenient to avoid port conflict and Zuul Intelligent routing (proxy for our micro services) and also as a gateway for external requests.
@@ -98,7 +104,20 @@ While Hystrix used for circuit breaker funtion; Turbine stream is used for aggre
 
 ### Microservice Communications
 
-There are different patterns that are used in microservice communications depend on the design approach adopted for microservice 
+There are different patterns that are used in microservice architecture depending on the design approach for example direct service communications wherein the services are integrating and talking to each other using synchronous REST calls as in the case of car client and car services in this project.
+
+One other approach is Asynchronous Messaging Design Pattern In this type of microservices design pattern, all the services can communicate with each other, but they do not have to communicate with each other sequentially. wherein the service fires the request and receives acknoledgment while processing continoue separately in the called service.
+
+Also - Command Query Responsibility Segregator (CQRS) Design Pattern - Every microservices design has either the database per service model or the shared database per service. But, in the database per service model, we cannot implement a query as the data access is only limited to one single database. So, in such scenario, you can use the CQRS pattern. According to this pattern, the application will be divided into two parts: Command and Query. The command part will handle all the requests related to CREATE, UPDATE, DELETE while the query part will take care of the materialized views. The materialized views are updated through a sequence of events which are creating using the event source pattern discussed above.
+
+Related to CQRS Design Pattern - the API Decomposition Pattern to query the data from various microservices for example in this project a standalone service 'customer-car' was created to query and get combined data from car and customer microservices.
+
+In addition to event-driven architecture, when a service performs some piece of work that other services might be interested in, that service produces an event—a record of the performed action. Other services consume those events so that they can perform any of their own tasks needed as a result of the event. Unlike with REST, services that create requests do not need to know the details of the services consuming the requests.
+
+#### Feigen Client
+
+For direct service communication, I used feigen client for microservice communications - as per Spring Documentation; Feign is a declarative web service client. It makes writing web service clients easier. To use Feign create an interface and annotate it. It has pluggable annotation support including Feign annotations and JAX-RS annotations. Feign also supports pluggable encoders and decoders. Spring Cloud adds support for Spring MVC annotations and for using the same HttpMessageConverters used by default in Spring Web. Spring Cloud integrates Ribbon and Eureka to provide a load balanced http client when using Feign.
+
 
 ### MongoDB (Document Database)
 
