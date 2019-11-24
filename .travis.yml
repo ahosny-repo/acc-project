@@ -34,11 +34,6 @@ script:
     - docker build -t $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID
     
-    - cd ../acc-car
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID
-    
     - cd ../acc-customer
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t $DOCKER_USERNAME/acc-customer:$TRAVIS_BUILD_ID .
@@ -72,3 +67,8 @@ script:
     - cd ../acc-dashboard
     - docker build -t $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID
+    
+    - cd ../acc-car
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
+    - docker build -t $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID
