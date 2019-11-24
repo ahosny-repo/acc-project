@@ -1,13 +1,9 @@
 server:
   port: 8068
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream, info, health
+        include: 
+        - '*'

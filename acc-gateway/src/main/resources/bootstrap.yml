@@ -3,9 +3,13 @@ spring:
     name: acc-gateway
   cloud:
     config:
-      username: admin
-      password: admin@123
       uri: http://localhost:8888
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
+      
 zuul:
   host:
     socket-timeout-millis: 30000
@@ -18,4 +22,4 @@ zuul:
       url: http://localhost:8078/acc/customercars
     customers:
       path: /acc/customers/**
-      url: http://localhost:8076/acc/customers
+      url: http://localhost:8055/acc/customers

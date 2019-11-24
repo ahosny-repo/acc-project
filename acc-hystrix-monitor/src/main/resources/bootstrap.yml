@@ -1,10 +1,10 @@
 spring:
   application:
-    name: acc-customer-car
+    name: acc-hystrix-monitor
   cloud:
     config:
       uri: http://localhost:8888
-            
+      
 eureka:
   client:
     service-url:

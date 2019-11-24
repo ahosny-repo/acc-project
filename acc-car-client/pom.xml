@@ -18,7 +18,6 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.RC1</spring-cloud.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -50,7 +49,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -62,7 +60,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -71,7 +68,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
@@ -79,5 +75,4 @@
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
-
 </project>

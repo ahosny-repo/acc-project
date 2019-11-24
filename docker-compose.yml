@@ -1,126 +1,149 @@
-version: '3'
+version: '3.5'
 services:      
-  acc-discovery-service:
+  acc-discovery-svc:
     build: ./acc-discovery
     image: acc-discovery
+    expose:
+      - '8761'
     ports:
       - '8761:8761'
     networks:
       - acc-project-network
 
-  acc-config-service:
+  acc-config-svc:
     build: ./acc-config
     image: acc-config
+    expose:
+      - '8888'
     ports:
       - '8888:8888'
     depends_on:
-      - acc-discovery-service
+      - acc-discovery-svc
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
     networks:
       - acc-project-network
 
-  acc-car-service:
+  acc-car-svc:
     build: ./acc-car
     image: acc-car
+    expose:
+      - '8066'
     ports:
       - '8066:8066'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
+      - acc-config-svc
+      - acc-discovery-svc
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
     networks:
       - acc-project-network
   
-  acc-customer-service:
+  acc-customer-svc:
     build: ./acc-customer
     image: acc-customer
+    expose:
+      - '8055'
     ports:
-      - '8076:8076'
+      - '8055:8055'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
+      - acc-config-svc
+      - acc-discovery-svc
     networks:
       - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
-      
-  acc-car-client-service:
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
+
+  acc-car-client-svc:
     build: ./acc-car-client
     image: acc-car-client
+    expose:
+      - '8068'
     ports:
       - '8068:8068'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
-      - acc-car-service
+      - acc-config-svc
+      - acc-discovery-svc
+      - acc-car-svc
     networks:
-      - acc-project-network   
+      - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
-  
-  acc-customer-car-service:
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
+      
+  acc-customer-car-svc:
     build: ./acc-customer-car
     image: acc-customer-car
+    expose:
+      - '8078'
     ports:
       - '8078:8078'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
-      - acc-car-service
-      - acc-customer-service
+      - acc-config-svc
+      - acc-discovery-svc
+      - acc-car-svc
+      - acc-customer-svc
     networks:
-      - acc-project-network         
+      - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
-  
-  acc-gateway-service:
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
+      
+  acc-gateway-svc:
     build: ./acc-gateway
     image: acc-gateway
+    expose:
+      - '8088'
     ports:
       - '8088:8088'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
-      - acc-car-service
-      - acc-customer-service
-      - acc-customer-car-service
+      - acc-config-svc
+      - acc-discovery-svc
+      - acc-car-svc
+      - acc-customer-svc
+      - acc-customer-car-svc
     networks:
       - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
-    
-  acc-hystrix-monitor-service:
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
+      
+  acc-hystrix-monitor-svc:
     build: ./acc-hystrix-monitor
     image: acc-hystrix-monitor
+    expose:
+      - '8886'
     ports:
       - '8886:8886'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
+      - acc-config-svc
+      - acc-discovery-svc
     networks:
       - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
     
   acc-turbine-stream-service:
     build: ./acc-turbine-stream
     image: acc-turbine-stream
+    expose:
+      - '9090'
     ports:
       - '9090:9090'
     depends_on:
-      - acc-config-service
-      - acc-discovery-service
-      - acc-car-service
-      - acc-customer-service
-      - acc-customer-car-service
+      - acc-config-svc
+      - acc-discovery-svc
     networks:
       - acc-project-network
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://acc-discovery-service:8761/eureka"
+      EUREKA_HOSTNAME: "acc-discovery-svc"
+      EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
           
-  acc-dashboard-service:
+  acc-dashboard-svc:
     build: ./acc-dashboard
     image: acc-dashboard
     ports: 
@@ -132,3 +155,4 @@ services:
       
 networks:
   acc-project-network:
+     driver: bridge
