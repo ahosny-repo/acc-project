@@ -6,3 +6,9 @@ management:
     web:
       exposure:
         include: hystrix.stream, info, health
+
+car-feign.name: acc-car
+car-feign.url: http://${CAR_SVC_HOSTNAME:localhost}:8066
+
+customer-feign.name: acc-customer
+customer-feign.url: http://${CUSTOMER_SVC_HOSTNAME:localhost}:8055

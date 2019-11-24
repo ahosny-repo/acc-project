@@ -2,7 +2,7 @@ version: '3.5'
 services:      
   acc-discovery-svc:
     build: ./acc-discovery
-    image: acc-discovery
+    image: acc-discovery-img
     expose:
       - '8761'
     ports:
@@ -12,7 +12,7 @@ services:
 
   acc-config-svc:
     build: ./acc-config
-    image: acc-config
+    image: acc-config-img
     expose:
       - '8888'
     ports:
@@ -27,7 +27,7 @@ services:
 
   acc-car-svc:
     build: ./acc-car
-    image: acc-car
+    image: acc-car-img
     expose:
       - '8066'
     ports:
@@ -43,7 +43,7 @@ services:
   
   acc-customer-svc:
     build: ./acc-customer
-    image: acc-customer
+    image: acc-customer-img
     expose:
       - '8055'
     ports:
@@ -59,7 +59,7 @@ services:
 
   acc-car-client-svc:
     build: ./acc-car-client
-    image: acc-car-client
+    image: acc-car-client-img
     expose:
       - '8068'
     ports:
@@ -71,12 +71,13 @@ services:
     networks:
       - acc-project-network
     environment:
+      CAR_SVC_HOSTNAME: "acc-car-svc"  
       EUREKA_HOSTNAME: "acc-discovery-svc"
       EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
       
   acc-customer-car-svc:
     build: ./acc-customer-car
-    image: acc-customer-car
+    image: acc-customer-car-img
     expose:
       - '8078'
     ports:
@@ -89,12 +90,14 @@ services:
     networks:
       - acc-project-network
     environment:
+      CAR_SVC_HOSTNAME: "acc-car-svc"
+      CUSTOMER_SVC_HOSTNAME: "acc-customer-svc"
       EUREKA_HOSTNAME: "acc-discovery-svc"
       EUREKA_URI: "http://acc-discovery-svc:8761/eureka"
       
   acc-gateway-svc:
     build: ./acc-gateway
-    image: acc-gateway
+    image: acc-gateway-img
     expose:
       - '8088'
     ports:
@@ -116,7 +119,7 @@ services:
       
   acc-hystrix-monitor-svc:
     build: ./acc-hystrix-monitor
-    image: acc-hystrix-monitor
+    image: acc-hystrix-monitor-img
     expose:
       - '8886'
     ports:
@@ -132,7 +135,7 @@ services:
     
   acc-turbine-stream-service:
     build: ./acc-turbine-stream
-    image: acc-turbine-stream
+    image: acc-turbine-stream-img
     expose:
       - '9090'
     ports:
@@ -148,7 +151,7 @@ services:
           
   acc-dashboard-svc:
     build: ./acc-dashboard
-    image: acc-dashboard
+    image: acc-dashboard-img
     ports: 
         - '4200:4200'
     command: > 

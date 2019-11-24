@@ -6,9 +6,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.alten.acc.model.Car; 
+import com.alten.acc.model.Car;
 
-@FeignClient("acc-car")
+@FeignClient(name= "${car-feign.name}",url ="${car-feign.url}")
 public interface CarClient {
 
 	@GetMapping("/acc/cars")

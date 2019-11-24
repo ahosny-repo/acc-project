@@ -7,3 +7,6 @@ management:
       exposure:
         include: 
         - '*'
+        
+car-feign.name: acc-car
+car-feign.url: http://${CAR_SVC_HOSTNAME:localhost}:8066
