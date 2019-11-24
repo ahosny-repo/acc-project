@@ -7,6 +7,10 @@
 # Car Monitoring System (ACC)
 Car Monitoring System (Alten Connected Car - ACC for short) is a system for tracking and monitoring car status of the customers whos are registered within the system so the can manage their day to day business operations. 
 
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-dashboard.JPG" width="600">
+</p>
+
 ## Scenario:
 	
 	- Partner company has a number of connected vehicles that belongs to a number of customers.
@@ -51,8 +55,9 @@ Car Monitoring System (Alten Connected Car - ACC for short) is a system for trac
 
 Spring Boot
 
-![alt text] (C://eDoc/alten/work/images/spring-boot-arch.JPG)	
-
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/spring-boot-arch.JPG" width="600">
+</p>
 
 ### Microservice Architecture
 
