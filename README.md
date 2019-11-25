@@ -165,15 +165,15 @@ MongoDB architecture is made up of collections and documents, A record in MongoD
 
 #### Car Collection
 
-Sample Document:
+**Sample Document:**
 
-{"_id":"5dd6ee304cc7683f1c895d31","carId":"YS2R4X","registrationNumber":"ABC123","status":"DISCONNECTED"}
+	- {"_id":"5dd6ee304cc7683f1c895d31","carId":"YS2R4X","registrationNumber":"ABC123","status":"DISCONNECTED"}
 
 #### Customer Collection
 
-Sample Document:
+**Sample Document:**
 
-{"_id":"5dc9a0d05462bef800bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
+	- {"_id":"5dc9a0d05462bef800bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
 
 
 ## Microservice End-Points (Ports)
@@ -183,16 +183,23 @@ Sample Document:
 </p>
 
 Eureka Server: http://localhost:8761
-
 Zuul API Gateway: http://localhost:8088
-
 WebGUI Dashboard: http://localhost:4200
-
 Turbine Stream: http://localhost:9090/hystrix
 
 ## Continuous Integration / Delivery (CI/CD)
 
+Travis CI tool is used in the project as a continuous integration tool that integrates with GitHub repository to get and automate the process of building and testing code changes, providing immediate feedback on the success / failure of the change.
 
+Travis CI integrates with many tools for continous code quality and inspection like SonarCloud which is an open source online tool provided over the cloud to perform code analysis on your code base through integration with GitHub.
+
+Travis CI integrates also with Docker to dockerize your application builds and push docker images it to Docker Hub for sharing and for continous deployement process as-well.
+
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/travis.JPG" width="400">
+</p>
+
+Travis CI also supports continous deployement of the containerized application into the cloud i.e. in this project - it is planned to auto deploy to the AWS cloud platform using one of the container services offered by Amazon like ECR, EBS or AWS Fargate ECS. 
 
 ## Serverless Architecture
 
