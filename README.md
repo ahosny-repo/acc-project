@@ -196,7 +196,7 @@ Travis CI integrates with many tools for continous code quality and inspection l
 Travis CI integrates also with Docker to dockerize your application builds and push docker images it to Docker Hub for sharing and for continous deployement process as-well.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/travis.JPG" width="400">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/travis.png" width="400">
 </p>
 
 Travis CI also supports continous deployement of the containerized application into the cloud i.e. in this project - it is planned to auto deploy to the AWS cloud platform using one of the container services offered by Amazon like ECR, EBS or AWS Fargate ECS. 
