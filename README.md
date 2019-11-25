@@ -72,7 +72,7 @@ The Spring Framework provides a comprehensive programming and configuration mode
 The following are service components that are mainly used to build ACC.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-service-diagram.JPG" width="400">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-service-diagram.JPG" width="600">
 </p>
 
 1- Car Service
@@ -174,6 +174,19 @@ Sample Document:
 Sample Document:
 
 {"_id":"5dc9a0d05462bef800bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
+
+
+## Microservice End-Points (Ports)
+
+
+<p align="left">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/running-services.JPG" width="400">
+</p>
+
+Eureka Server: http://localhost:8761
+Zuul API Gateway: http://localhost:8088
+WebGUI Dashboard: http://localhost:4200
+Turbine Stream: http://localhost:9090/hystrix
 
 ## Continuous Integration / Delivery (CI/CD)
 
