@@ -69,6 +69,40 @@ The Spring Framework provides a comprehensive programming and configuration mode
 
 ### Microservice
 
+The following are service components that are mainly used to build ACC.
+
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-service-diagram.JPG" width="400">
+</p>
+
+1- Car Service
+
+This service is used for managing and getting car data.
+
+| Method | Path                    | Description                  |
+|--------|-------------------------|------------------------------|
+| GET    | /acc/cars/id/{id}       | Get car data by id           |
+| GET    | /acc/cars               | Get all cars data            |
+| POST   | /acc/cars/new/{car}     | Add new car                  |
+| POST   | /acc/cars/pulse/{id}    | Set car status               |
+
+2- Customer Service
+
+This service is used for managing and getting customer data.
+
+| Method | Path                         	 | Description                  |
+|--------|-----------------------------------|------------------------------|
+| GET    | /acc/customers/id/{id}     		 | Get customer data by id      |
+| GET    | /acc/customers              		 | Get all customer data        |
+| POST   | /acc/customers/new/{customer}     | Add new car                  |
+
+3- Query Service (Customer Cars)
+
+this service is used to get customer cars details into one view.
+
+| Method | Path              	  | Description                  |
+|--------|------------------------|------------------------------|
+| GET    | /acc/customercars      | Get all customer cars data   |
 
 
 ### Service Configuration
