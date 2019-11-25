@@ -118,10 +118,31 @@ In addition to event-driven architecture, when a service performs some piece of 
 
 For direct service communication, I used feigen client for microservice communications - as per Spring Documentation; Feign is a declarative web service client. It makes writing web service clients easier. To use Feign create an interface and annotate it. It has pluggable annotation support including Feign annotations and JAX-RS annotations. Feign also supports pluggable encoders and decoders. Spring Cloud adds support for Spring MVC annotations and for using the same HttpMessageConverters used by default in Spring Web. Spring Cloud integrates Ribbon and Eureka to provide a load balanced http client when using Feign.
 
-
 ### MongoDB (Document Database)
 
+In the project MongoDB was used as a data store for our data; MongoDB is an open source NoSQL database management system (DBMS) that uses a document-oriented database model which supports various forms of data. 
+
+MongoDB architecture is made up of collections and documents, A record in MongoDB is a document, which is a data structure composed of field and value pairs. MongoDB documents are similar to JavaScript Object Notation objects but use a variant called Binary JSON (BSON) that accommodates more data types.
+
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/mongodb.JPG" width="600">
+</p>
+
+
+#### Car Collection
+
+Sample Document:
+
+{"_id":"5dd6ee304cc7683f1c895d31","carId":"YS2R4X","registrationNumber":"ABC123","status":"DISCONNECTED"}
+
+#### Customer Collection
+
+Sample Document:
+
+{"_id":"5dc9a0d05462bef600bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
+
 ## Dashboard with SPA Web-GUI
+
 
 ## Continuous Integration / Delivery (CI/CD)
 
