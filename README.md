@@ -42,7 +42,7 @@ Car Monitoring System (A Connected Car - ACC for short) is a system for tracking
 The following diagrams represent the solution components, domains, infrastructure and services that used as building block for our project using Spring Boot, Spring Cloud with Netflix OSS Components and AWS for database hosting service pluse Angular8 for fronted Web-GUI / dashboard.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-arch.JPG" width="800">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-arch.JPG" width="500">
 </p>
 
 #### About Microservice
@@ -141,11 +141,20 @@ Sample Document:
 
 {"_id":"5dc9a0d05462bef800bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
 
-## Dashboard with SPA Web-GUI
-
-
 ## Continuous Integration / Delivery (CI/CD)
 
 
 
+## Serverless Architecture
 
+In real life scenario, this example would be implemented as an IoT Application built on top of a set of serverless interfaces or a.k.a in clould architecture as Function as a Service 'FaaS'.
+
+Serverless IoT applications will gather, process, analyze, and act on connected vehicle data, without having to manage any infrastructure or scaling which will be clould provider solution i.e. Amazon has a reference architecture for IoT and Connected Device Application.
+
+The diagram below presents the components and functionality you can build using the solution implementation guide and accompanying AWS CloudFormation template. 
+
+Please refer to https://aws.amazon.com/solutions/aws-connected-vehicle-solution/
+
+<p align="center">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/aws-connected-vehicle-solution.png" width="500">
+</p>
