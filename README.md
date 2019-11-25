@@ -178,14 +178,16 @@ Sample Document:
 
 ## Microservice End-Points (Ports)
 
-
 <p align="left">
 <img src="https://github.com/ahosny-repo/acc-project/blob/master/images/running-services.JPG" width="400">
 </p>
 
 Eureka Server: http://localhost:8761
+
 Zuul API Gateway: http://localhost:8088
+
 WebGUI Dashboard: http://localhost:4200
+
 Turbine Stream: http://localhost:9090/hystrix
 
 ## Continuous Integration / Delivery (CI/CD)
