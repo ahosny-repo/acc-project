@@ -8,7 +8,7 @@
 Car Monitoring System (A Connected Car - ACC for short) is a system for tracking and monitoring car status of the customers whos are registered within the system so the can manage their day to day business operations. 
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-dashboard.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-dashboard.JPG" width="800">
 </p>
 
 ## Scenario:
@@ -42,7 +42,7 @@ Car Monitoring System (A Connected Car - ACC for short) is a system for tracking
 The following diagrams represent the solution components, domains, infrastructure and services that used as building block for our project using Spring Boot, Spring Cloud with Netflix OSS Components and AWS for database hosting service pluse Angular8 for fronted Web-GUI / dashboard.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-arch.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/acc-arch.JPG" width="800">
 </p>
 
 #### About Microservice
@@ -64,7 +64,7 @@ The main objective of the micro-services implementation is to split up the appli
 The Spring Framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/spring-boot-arch.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/spring-boot-arch.JPG" width="800">
 </p>
 
 ### Microservice
@@ -82,7 +82,7 @@ Netflix Eureka allows micro services to register themselves at runtime as they a
 Below screenshot shows the ACC Project services registered and running on Eureka Server:
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/eureka-server.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/eureka-server.JPG" width="800">
 </p>
 
 ### Microservice API Gateway
@@ -99,7 +99,7 @@ Netflix’s Hystrix library provides an implementation of the circuit breaker pa
 While Hystrix used for circuit breaker funtion; Turbine stream is used for aggregating streams of Server-Sent Event (SSE) JSON data for multiple Hystrix into a single stream. 
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/turbine-dashboard.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/turbine-dashboard.JPG" width="800">
 </p>
 
 ### Microservice Communications
@@ -125,7 +125,7 @@ In the project MongoDB was used as a data store for our data; MongoDB is an open
 MongoDB architecture is made up of collections and documents, A record in MongoDB is a document, which is a data structure composed of field and value pairs. MongoDB documents are similar to JavaScript Object Notation objects but use a variant called Binary JSON (BSON) that accommodates more data types.
 
 <p align="center">
-<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/mongodb.JPG" width="600">
+<img src="https://github.com/ahosny-repo/acc-project/blob/master/images/mongodb.JPG" width="800">
 </p>
 
 
@@ -139,7 +139,7 @@ Sample Document:
 
 Sample Document:
 
-{"_id":"5dc9a0d05462bef600bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
+{"_id":"5dc9a0d05462bef800bc6753","name":"KG AB","address":"CS 11","carIds":["5dd6ee304cc7683f1c895d31","5dd6ef428a81ba3f1ce1b626","5dd6ef558a81ba3f1ce1b627"]}
 
 ## Dashboard with SPA Web-GUI
 
