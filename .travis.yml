@@ -34,6 +34,5 @@ after_success:
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - eval $(aws ecr get-login --no-include-email --region eu-central-1)
-    - docker build -t acc-project/acc-discovery:latest .
-    - docker tag acc-project/acc-discovery:latest 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
+    - docker tag $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
     - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
