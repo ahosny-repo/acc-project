@@ -26,38 +26,24 @@ before_install:
 script:
     - cd acc-discovery
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID
     
     - cd ../acc-config
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-config:$TRAVIS_BUILD_ID
     
     - cd ../acc-customer
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-customer:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-customer:$TRAVIS_BUILD_ID
     
     - cd ../acc-gateway
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-gateway:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-gateway:$TRAVIS_BUILD_ID
     
     - cd ../acc-car-client
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-car-client:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-car-client:$TRAVIS_BUILD_ID
         
     - cd ../acc-turbine-stream
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-turbine-stream:$TRAVIS_BUILD_ID
-   
+    
     - cd ../acc-customer-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-customer-car:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-customer-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-dashboard
     - docker build -t $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID .
@@ -65,17 +51,16 @@ script:
     
     - cd ../acc-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-hystrix-monitor
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    - docker build -t $DOCKER_USERNAME/acc-hystrix-monitor:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-hystrix-monitor:$TRAVIS_BUILD_ID
-    
     
 after_success:
     - docker --version  # document the version travis is using
+    - sudo apt install python3-pip
+    - pip3 --version
     - pip3 install awscli --upgrade --user
     - export PATH=$PATH:$HOME/.local/bin
     - eval $(aws ecr get-login --no-include-email --region eu-central-1)
+    - docker tag acc-discovery:latest 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
