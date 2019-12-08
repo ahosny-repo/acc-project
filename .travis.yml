@@ -26,7 +26,9 @@ before_install:
 script:
     - cd acc-discovery
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
+    - docker build -t $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID .
+    - docker push $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID
+   
     - cd ../acc-config
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     
@@ -57,9 +59,7 @@ script:
     
 after_success:
     - docker --version  # document the version travis is using
-    - sudo apt install python3-pip
-    - pip3 --version
-    - pip3 install awscli --upgrade --user
+    - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - eval $(aws ecr get-login --no-include-email --region eu-central-1)
     - docker tag acc-discovery:latest 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
