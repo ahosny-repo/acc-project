@@ -28,39 +28,12 @@ script:
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID .
     - docker push $DOCKER_USERNAME/acc-discovery:$TRAVIS_BUILD_ID
-   
-    - cd ../acc-config
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-customer
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-gateway
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-car-client
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-        
-    - cd ../acc-turbine-stream
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-customer-car
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-dashboard
-    - docker build -t $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID .
-    - docker push $DOCKER_USERNAME/acc-dashboard:$TRAVIS_BUILD_ID
-    
-    - cd ../acc-car
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
-    - cd ../acc-hystrix-monitor
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
-    
+       
 after_success:
     - docker --version  # document the version travis is using
     - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - eval $(aws ecr get-login --no-include-email --region eu-central-1)
-    - docker tag acc-discovery:latest 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
+    - docker build -t acc-project/acc-discovery:latest .
+    - docker tag acc-project/acc-discovery:latest 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
     - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
