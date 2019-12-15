@@ -27,85 +27,75 @@ script:
     - cd acc-discovery
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-discovery:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-discovery:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-discovery:$TRAVIS_BUILD_ID
     
     - cd ../acc-config
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-config:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-config:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-config:$TRAVIS_BUILD_ID
     
     - cd ../acc-customer
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-customer:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-customer:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-customer:$TRAVIS_BUILD_ID
     
     - cd ../acc-gateway
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-gateway:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-gateway:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-gateway:$TRAVIS_BUILD_ID
     
     - cd ../acc-car-client
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-car-client:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-car-client:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-car-client:$TRAVIS_BUILD_ID
     
     - cd ../acc-turbine-stream
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-turbine-stream:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-turbine-stream:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-turbine-stream:$TRAVIS_BUILD_ID
     
     - cd ../acc-customer-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-customer-car:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-customer-car:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-customer-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-dashboard
     - docker build -t acc-project/acc-dashboard:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-dashboard:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-dashboard:$TRAVIS_BUILD_ID
     
     - cd ../acc-car
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-car:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-car:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-car:$TRAVIS_BUILD_ID
     
     - cd ../acc-hystrix-monitor
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY
     - docker build -t acc-project/acc-hystrix-monitor:$TRAVIS_BUILD_ID .
-    - docker push acc-project/acc-hystrix-monitor:$TRAVIS_BUILD_ID
+    - docker push $DOCKER_USERNAME/acc-project/acc-hystrix-monitor:$TRAVIS_BUILD_ID
        
 after_success:
     - docker --version
     - pip install --user awscli
     
     - export PATH=$PATH:$HOME/.local/bin
-    - eval $(aws ecr get-login --no-include-email --region eu-central-1)
-    
+    - eval $(aws ecr get-login --no-include-email --region eu-central-1)    
     - docker tag acc-project/acc-discovery:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-discovery:latest    
     - docker tag acc-project/acc-config:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-config:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-config:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-config:latest    
     - docker tag acc-project/acc-customer:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer:latest    
     - docker tag acc-project/acc-gateway:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-gateway:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-gateway:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-gateway:latest    
     - docker tag acc-project/acc-car-client:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car-client:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car-client:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car-client:latest    
     - docker tag acc-project/acc-turbine-stream:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-turbine-stream:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-turbine-stream:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-turbine-stream:latest    
     - docker tag acc-project/acc-customer-car:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer-car:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer-car:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-customer-car:latest    
     - docker tag acc-project/acc-dashboard:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-dashboard:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-dashboard:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-dashboard:latest    
     - docker tag acc-project/acc-car:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car:latest
-    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car:latest
-    
+    - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-car:latest    
     - docker tag acc-project/acc-hystrix-monitor:$TRAVIS_BUILD_ID 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-hystrix-monitor:latest
     - docker push 643749069809.dkr.ecr.eu-central-1.amazonaws.com/acc-project/acc-hystrix-monitor:latest
