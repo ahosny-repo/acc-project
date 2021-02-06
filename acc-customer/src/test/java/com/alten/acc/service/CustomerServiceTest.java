@@ -3,6 +3,7 @@ package com.alten.acc.service;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -22,9 +23,11 @@ public class CustomerServiceTest {
 	@Test
 	public void testAddCustomer() {
 		Customer customer = new Customer();
-		customer.setId("1233");
 		customer.setName("Ahmed");
 		customer.setAddress("Egypt");
+		List<String> carIds=new ArrayList<>();
+		carIds.add("A2030");
+		customer.setCarIds(carIds);
 		customerService.addCustomer(customer);
 		assertEquals(customer.toString(), customer.toString());
 	}
@@ -42,7 +45,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testDeleteCustomer() {
-		Customer customer = customerService.findById("1233");
+		Customer customer = customerService.findByName("Ahmed");
 		String message = customerService.deleteCustomer(customer.getId());
 		assertEquals(message, message);
 	}
@@ -65,8 +68,8 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testFindCustomerById() {
-		Customer customer = customerService.findById("5dc9a0d05462bef600bc6753");
-		assertEquals(customer.getName(), "Kalles Grustransporter AB");
+		Customer customer = customerService.findById("601de7779272983735ce298f");
+		assertEquals(customer.getName(), "Ahmed Hosny");
 	}
 
 	@Test
@@ -83,8 +86,8 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testFindCustomerByCustomerName() {
-		Customer customer = customerService.findByName("Kalles Grustransporter AB");
-		assertEquals(customer.getId(), "5dc9a0d05462bef600bc6753");
+		Customer customer = customerService.findByName("Ahmed Hosny");
+		assertEquals(customer.getId(), "601de7779272983735ce298f");
 	}
 
 	@Test
